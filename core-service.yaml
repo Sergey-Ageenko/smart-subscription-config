@@ -1,26 +1,7 @@
 spring:
-  datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
-
-
   kafka:
-    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS}
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
-      properties:
-        schema.registry.url: ${SCHEMA_REGISTRY_URL}
     consumer:
       group-id: core-service
-      auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
-
-      properties:
-        schema.registry.url: ${SCHEMA_REGISTRY_URL}
-        specific.avro.reader: true
 
   jpa:
     properties:
@@ -28,14 +9,9 @@ spring:
         default_schema: core_service
 
   flyway:
-    enabled: true
     schemas: core_service
 
 app:
   outbox:
     poll-interval-ms: ${POLL_INTERVAL_MS}
     recovery-interval-ms: ${RECOVERY_INTERVAL_MS}
-
-logging:
-  level:
-    root: INFO
