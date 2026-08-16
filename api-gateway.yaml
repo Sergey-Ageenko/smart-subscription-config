@@ -10,6 +10,7 @@ spring:
         webflux:
           redis-rate-limiter:
             include-headers: true
+
           routes:
             - id: auth-service
               uri: ${AUTH_URL}
@@ -21,7 +22,6 @@ spring:
                     key-resolver: "#{@keyResolver}"
                     redis-rate-limiter.replenishRate: 5
                     redis-rate-limiter.burstCapacity: 10
-
 
             - id: core-service
               uri: ${CORE_URL}
@@ -49,9 +49,4 @@ jwt:
   secret: ${JWT_SECRET}
   issuer: ${JWT_ISSUER}
   audiences: ${JWT_AUDIENCES}
-
-
-logging:
-  level:
-    root: INFO
 
