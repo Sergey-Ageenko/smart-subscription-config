@@ -1,23 +1,8 @@
 spring:
-  datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
-
   data:
     redis:
       host: ${SPRING_DATA_REDIS_HOST}
       port: ${SPRING_DATA_REDIS_PORT}
-
-  kafka:
-    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS}
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
-
-    properties:
-      schema.registry.url: ${SCHEMA_REGISTRY_URL}
-
 
   jpa:
     properties:
@@ -25,7 +10,6 @@ spring:
         default_schema: auth_service
 
   flyway:
-    enabled: true
     schemas: auth_service
 
 jwt:
@@ -43,7 +27,3 @@ app:
   cookie:
     secure: true
     max-age: ${COOKIE_MAX_AGE}
-
-logging:
-  level:
-    root: INFO
